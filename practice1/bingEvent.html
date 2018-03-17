@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery基本操作事件绑定</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{width: 150px;height: 100px;border: 1px solid #666;}
+        #leftDiv{background-color: #ccc;display: inline-block;}
+        #rightDiv{background-color: #999;display: inline-block;}
+        botton{margin-right: 10px}
+    </style>
+</head>
+<body>
+<span><button>div显示与隐藏</button></span><button>普通按钮</button><hr/>
+<div id="leftDiv">已存在的Div</div>
+<script type="text/javascript">
+    $(function (){
+        //绑定事件
+        $("div").live("click",function(){
+            alert($(this).html());
+        });
+        //通过代买新增的Div
+        $("body").append("<div id='rightDiv'>通过代码新增的Div</div>");
+        //对span元素中button按钮绑定click事件处理
+        $("span").delegate("button","click",function(){
+            $("div").slideToggle();//div显示与隐藏
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery层次选择器</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div>
+    搜索条件：<input name="search">
+    <form>
+        <label>用户名：</label>
+        <input name="userName"/>
+        <fieldset>
+            <label>密码：</label>
+            <input name="password"/>
+        </fieldset>
+    </form>
+    <hr/>
+    身份证号：<input name="none"><br/>
+    联系电话：<input name="none"><br/>
+</div>
+<script type="text/javascript">
+    $(function(e){
+        $("form input").css("width","200px");
+        $("form>input").css("background","pink");
+        $("label+input").css("border-color","blue");
+        //$("label").next("input").css("border-color","blue");
+        $("form~input").css("border-bottom-width","4px");
+        $("*").css("padding-top","3px");
+    });
+</script>
+</body>
+</html>

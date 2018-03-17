@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery基本操作-样式操作</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        .baseClass{background-color: #DDD;}
+        .focusClass{background-color: #FFF;border:2px dotted #FF0000}
+        .inverseColor{color: #FFF;background-color:#000}
+    </style>
+</head>
+<body>
+销售人员：<input type="text" value="请输入销售人员名称" id="userName"
+            class="baseClass" onfocus="userNameOnFocus()"/><br/>
+销售部门：<input type="text" value="请输入销售部门" id="saleDept"><br/>
+<input type="button" value="更换销售部门样式（单击三次）" onclick="changeDept()"/><hr/>
+<img src="images/flower2.jpg" width="250"/><br/>
+<input type="button" value="放大图片" onclick="enlargeImage()"/>
+<input type="button" value="缩小图片" onclick="lessImage()"/>
+<script type="text/javascript">
+    var count=0;//计数功能
+    function userNameOnFocus(){
+        $("#userName").toggleClass("focusClass");
+    }
+    function changeDept(){
+        $("#saleDept").toggleClass("inverseColor",++count%3==0);
+        }
+
+    //图片放大
+    function enlargeImage() {
+        $("img").css({
+            width: function (index, value) {
+                return parseFloat(value) * 1.1;
+            },
+            height: function (index, value) {
+                return parseFloat(value) * 1.1;
+            }
+        });
+    }
+    //图片缩小
+    function  lessImage(){
+        $("img").css({
+            width: function (index,value) {
+                return parseFloat(value)*0.9;
+            },
+            height: function (index,value) {
+                return parseFloat(value)*0.9;
+            }
+        });
+    }
+</script>
+</body>
+</html>

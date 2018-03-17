@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery基本操作事件对象</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{margin-top: 4px}
+        #middleDiv,#rightDiv{width: 200px;height: 100px;background-color: #ccc}
+    </style>
+</head>
+<body>
+<div id="leftDiv">
+    <form action="http://www.itshixun.com">
+        <div id="innerDiv">
+        用户名：<input type="text" id="userName">
+        <input type="submit" value="普通提交按钮" id="submitBtn">
+        <input type="submit" value="组织默认按钮" id="stupSubmitBtn"/>
+        <input type="submit" value="普通按钮" id="normalBtn"/>
+        <input type="submit" value="阻止冒泡按钮" id="stopPropagation">
+        </div>
+    </form>
+</div>
+<div id="middleDiv"></div>
+<div id="rightDiv"></div>
+<script type="text/javascript">
+    $(function(){
+        //提交按钮，默认提交表单
+        $("#submitBtn").on("click",function(event){
+            console.log("单击普通提交按钮");
+        });
+        //使用preventDefault()方法组织元素的默认行为
+        //但时间会继续向外传递
+        $("#stopSubmitBtn").on("click",function(event){
+            console.log("单击‘组织默认按钮’，阻止默认元素的默认行为（如表单提交等）");
+            event.preventDefault();
+        });
+        //普通按钮，具有事件冒泡行为
+        $("#normalBtn").on("click", function (event){
+            console.log("单击‘普通按钮’");
+        });
+        //普通按钮，并阻止冒泡行为
+        $("#stopPropagateBtn").on("click", function (event) {
+            console.log("单击‘阻止冒泡按钮’，组织事件的冒泡行为");
+            event.stopPropagation();
+        });
+        //用于接收内部按钮传递来的冒泡事件
+        $("#innerDiv").on("click",printEvent);
+        //鼠标移动时，获取鼠标在事件源中的相对坐标
+        $("#middleDiv").on("mousemove",function(event){
+            var x=parseInt(event.pageX-$(this).offset().left);
+            var y=parseInt(event.pageY-$(this).offset().top);
+            $(this).html("鼠标位置："+x+","+y);
+        });
+        //鼠标单击判断处理
+        $("#rightDiv").on("mousedown",{user:'jCukoo'},function(event){
+            if(event.which==1){
+                $("#rightDiv").html(event.data.user+"单击了鼠标左键").css("background-color","#ffc");
+            } else if(event.which==2){
+                    $("rightDiv").html(event,data.user+"淡季了鼠标中间").css("background-color","#FF6");
+            } else if (event.which==3){
+                $("rightDiv").html(event.data.user+"单击了鼠标右键").css("background-color","#FC0")
+                }
+            });
+        });
+    //定义一个处理事件的函数
+    function  printEvent(event){
+        var result="事件源："+event.target.value;
+        result+="事件类型："+event.type;
+        result+="当前标签类型："+$(this).get(0).tagName;
+        console.log(result);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery基本操作事件绑定</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{width: 200px;height: 200px;border: 1px solid #666}
+        #leftDiv{float: left;margin: 0 auto}
+        #rightDiv{float:right;}
+        .entered{background-color: #66f}
+    </style>
+</head>
+<body>
+<div id="leftDiv">
+    <input type="button" value="bind事件绑定" id="bindBtn"/>
+    <input type="button" value="一次绑定两个事件" id="bindBtn2">
+    <input type="button" value="多事件绑定" id="manyBindBtn">
+    <input type="button" value="事件绑定缩写方式" id="shortBindBtn">
+    <input type="button" value="toggle()多形式事件" id="toggleBtn"/>
+    <input type="button" value="toggle()动画事件" id="toggleAnimateBtn"/>
+</div>
+<div id="rightDiv">右侧展示区</div>
+<script type="text/javascript">
+    $(function(){
+        //绑定事件
+        $("#bindBtn").bind("click",function(){
+            $("#rightDiv").text("使用bind()方法绑定事件处理");
+        });
+        //为一个对象同时绑定mouseenter和mouseover事件
+        $("#bindBtn2").bind("mouseenter mouseover",function(){
+            $(this).toggleClass("entered");
+        });
+        //为一个对象同时绑定多个事件，且每个事件具有单独的处理函数
+        $("#manyBindBtn").bind({click:function(){$("#rightDiv").slideToggle();},
+                mouseover:function(){
+                    $("#rightDiv").css("background-color","red");},
+                mouseout: function () {
+                    $("#rightDiv").css("background-color","yellow");}
+        });
+        //事件绑定的缩写形式
+        $("#shortBindBtn").click(function(){
+            $("#rightDiv").text("事件绑定缩写方式实现");
+        });
+        //模拟连续多次单击事件
+        $("#toggleBtn").toggle(function(){
+            $(this).css("background-color","red");
+        },function(){
+            $(this).css("background-color","green");
+        },function(){
+            $(this).css("background-color","white");
+        }
+        );
+        //动画效果结束后，再调用事件处理函数
+        $("#toggleAnimateBtn").click(function(){
+            //$("#newsContent").toggle(10000);
+            $("#rightDiv").toggle("slow","swing",function(){
+                $("#toggleAnimateBtn").css("background-color","red");
+            });
+        });
+    });
+</script>
+</body>
+</html>

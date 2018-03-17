@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery基本操作-内容操作</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div id="newsContent">
+    <p>中国的商业正处于一场正在进行时态的变革</p>
+    <p>MALL新闻频道拥有中国购物，城市综合体，商业街区最全的商业信息。</p>
+</div>
+<div id="newsDiscuss"></div>
+    <hr/>
+    <input type="button" value="获得HTML内容" onclick="getHTMLContent()">
+    <input type="button" value="获得Text内容" onclick="getTextContent()"/>
+    <input type="button" value="改变正文内容" onclick="changeContent()"/>
+    <input type="button" value="显示html内容" onclick="SetHTMLContent()"/>
+    <input type="button" value="显示Text内容" onclick="SetTextContent()">
+    <script type="text/javascript">
+        //获取元素的HTML内容
+        function getHTMLContent(){
+            console.log("<div>中的HTML内容如下："+$("#newsContent").html());
+        }
+        //获取元素的文本内容
+        function getTextContent(){
+            console.log("<div>中的text内容如下："+$("#newsContent").text());
+        }
+        //根据元素在集合中的位置不同，所赋的值也不同
+        function changeContent(){
+            $("p").html(function(index,htmlCode){
+                switch(index){
+                    case 0:
+                        return"<h1>"+htmlCode+"<h1/>";
+                    case 1:
+                        return"<h2>"+htmlCode+"<h2/>";
+                }
+            });
+        }
+        //设置元素的html内容
+        function SetHTMLContent(){
+            $("#newsDiscuss").html("<hr/>补充如下：Mall全称Shopping Mall(大型购物中心)，属于一种新型的符合性商业。");
+        }
+        //设置元素的文本内容
+        function SetTextContent(){
+            $("#newsDiscuss").text("<hr/>补充如下：Mall全称Shopping Mall(大型购物中心)，属于一种新型的复合型商业。");
+        }
+    </script>
+
+</body>
+</html>

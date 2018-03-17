@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery简单过滤选择器</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div>
+    <table>
+        <tr><td>商品名</td><td>商品价格</td><td>商品数量</td></tr>
+        <tr><td>海俪恩太阳眼镜</td><td>299</td><td>50</td></tr>
+        <tr><td>田玉平安扣</td><td>1280</td><td>30</td></tr>
+        <tr><td>汤美男士皮带</td><td>198</td><td>36</td></tr>
+        <tr><td>上海故事围巾</td><td>159</td><td>67</td></tr>
+        <tr><td>布奴顽疾滑雪服</td><td>1298</td><td>10</td></tr>
+        <tr><td>YIBOYO布施</td><td>89</td><td>100</td></tr>
+        <tr><td colspan="3">共计6种商品</td></tr>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function(e){
+        $("table tr:first").css("background-color","gray");
+        $("table tr:last").css("text-align","right");
+        $("table tr:eq(2)").css("color","red");
+        $("table tr:lt(1)").css("font-weight","bold");
+        $("table tr:odd").css("background-color","#dddddd");
+        $(":root").css("background-color","#EFEFEF");
+        $("table tr:not(:first)").css("font-size","11pt");
+    });
+</script>
+</body>
+</html>

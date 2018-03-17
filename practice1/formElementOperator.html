@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery基本操作-内容操作</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div id="newsContent">
+    <p>中国的商业正处于一场正在进行时态的变革</p>
+    <p>MALL时代新闻频道拥有中国购物，城市综合体，商业街区最全的商业信息。</p>
+</div>
+<div id="newsDiscuss"></div>
+<div><hr/>评论：<input type="text" value="请输入新闻评论" id="inputDiscuss"/>
+颜色：<select id="discussColor">
+        <option value="black">黑色</option>
+        <option value="red" selected>红色</option>
+        <option value="green">绿色</option>
+    </select>
+大小：<input type="radio" name="discussSize" value="9pt">较小
+    <input type="radio" name="discussSize" value="12pt" checked>正常
+    <input type="radio" name="discussSize" value="16pt" >较大
+</div>
+<hr/>
+<input type="button" value="提交评论信息" onclick="submitNewsDiscuss()"/>
+<script type="text/javascript">
+    function submitNewsDiscuss(){
+        var inputDiscuss=$("#inputDiscuss").val();
+        //链式操作方式
+        $("#newsDiscuss").html("<hr/>评论如下："+inputDiscuss).css("color",$("#discussColor").val())
+                .css("font-size",$("[name=discussSize]:checked").val());
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery基本操作事件绑定</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{width: 200px;height: 200px;border: 1px solid #666};
+        #leftDiv{float: left;margin: 0 auto}
+        #rightDiv{float: right;}
+    </style>
+</head>
+<body>
+<div id="leftDiv">
+    <input type="button" value="bind事件绑定" id="bindBtn"/>
+    <input type="button" value="事件传输数据" id="dataBindBtn">
+</div>
+<div id="rightDiv">右侧展示区</div>
+<script type="text/javascript">
+    $(function(){
+        //绑定事件（代替bind()方法）
+        $("#leftDiv").on("click","#bindBtn",function(){
+            alert("使用bind（)方法绑定事件处理");
+        });
+        //事件绑定，并传输额外数据（代替delegate（）fangfa ）
+        $("div").on("click","#dataBindBtn",{msg:"传递额外数据"},function(e){
+            alert(e.data.msg);
+        });
+        //绑定事件（替代live()方法）
+        $(document).on("click","div[id!=leftDiv]",function(){
+            alert($(this).html());
+        });
+        //hover（）绑定事件
+        $("#rightDiv").hover(function() {
+            var r = parseInt(Math.random() * 255);
+            var g = parseInt(Math.random() * 255);
+            var b = parseInt(Math.random() * 255);
+            var rgb = "rgb(" + r + "," + g + "," + b + ")";
+            $(this).css("background-color",rgb);
+        },function(){
+            $(this).css("background-color","white");
+        });
+    });
+
+</script>
+</body>
+</html>

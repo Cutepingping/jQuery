@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery表单对象属性过滤选择器</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<form id="myform" action="#">
+    用户id：<input type="text" value="U0001" disabled/><br/>
+    用户名：<input type="tel" name="userName" value="请输入用户名"/><br/>
+    密&nbsp;  码：<input type="password" name="userPWD" value="请输入用户密码"/><br/>
+    验证码：<input type="text" name="validateCode" disabled/><br/>
+    销售类型：<input type="checkbox" name="goodsType" value="红酒" checked/><br/>红酒
+    <input type="checkbox" name="goodsType" value="饮料" ><br/>饮料
+    <input type="checkbox" name="goodsType" value="运动装" checked><br/>运动装
+    <input type="checkbox" name="goodsType" value="太阳伞"><br/>太阳伞
+    <br/>
+    销售区域：<select name="province" multiple>
+    <option value="北京">北京</option>
+    <option value="山东" selected>山东</option>
+    <option value="重庆">重庆</option>
+    <option value="长三角" selected>长三角</option>
+    <option value="内蒙古">内蒙古</option>
+</select>
+    <hr/>用户信息如下：<br/><span id="result"></span>
+</form>
+<script type="text/javascript">
+    $(function(e){
+        //设置复选框以外对的input样式
+        $("input:not([type='checkbox'])").css({marginTop:"3px",width:"200px"});
+        $("#myform input:disabled").css({backgroundColor:"#CCC",borderColor:"#999"});
+        $("#myform input:enabled").css({color:"#f66"});
+        var goodsType=$("#myform input:checked");
+        var province=$("#myform option:selected").text();
+        $("#result").html("销售区域："+province+"<br/>销售类型有："+goodsType.length+"个");
+    });
+</script>
+</body>
+</html>

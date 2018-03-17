@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery内容过滤选择器</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div>
+<table>
+  <tr><td>商品名</td><td>商品价格</td><td>商品数量</td></tr>
+    <tr><td class="myClass">海俪恩太阳眼镜</td><td>299</td></tr>
+    <tr><td>50</td></tr>
+    <tr><td>田玉安全扣</td><td>1280</td><td>30</td></tr>
+    <tr><td>汤美男士皮带</td><td><span>198</span></td><td>36</td></tr>
+    <tr><td>POLTSI滑雪眼镜</td><td>149</td><td></td></tr>
+    <tr><td>布奴顽疾滑雪服</td><td>1298</td><td></td></tr>
+    <tr><td>YIBOYO布施</td><td><span>89</span></td><td></td></tr>
+    <tr><td colspan="3">共计6件商品</td></tr>
+</table>
+</div>
+<script type="text/javascript">
+    $(function(e){
+        $("td:contains('滑雪')").css("font-weight","bold");
+        $("td:parent").css("background-color","#dddddd");
+        $("td:has('span')").css("background-color","gray");
+        //$("td").has(‘span’）.css("background-color","gray")
+    });
+</script>
+</body>
+</html>

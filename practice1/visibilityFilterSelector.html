@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery内容过滤选择器</title>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{
+            width:300px;
+            height: 30px;
+            margin:3px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="topDiv">页面顶部</div>
+<div id="menuDiv" style="display: none;">菜单栏</div>
+<div id="mainDiv" style="height: 60px;">
+    用户id：<input type="hidden" value="用户ID"/><br/>
+    用户名：<input type="text" name="userName" value="请输入用户名"/>
+</div>
+<img src="images/showHidden.jpg" width="128" id="showHidden" onclick="showHiddenElement()" >
+<script type="text/javascript">
+    $(function(e){
+        $("div:visible").css("background-color","#dddddd");
+        $("input:visible").css("border","2px solid blue");
+        $(":visible").css("font-size","18px");
+    });
+    function showHiddenElement(){
+        $("div:hidden").show(1000);
+        $("input:hidden").attr("type","text");
+    }
+</script>
+</body>
+</html>
