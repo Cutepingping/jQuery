@@ -13,7 +13,7 @@ choiceQuestionCreator函数和inputQuestionCreator函数分别对应下拉菜单
 <br/>
 通过重构，我们可以去除不必要的问题类型的枚举AnswerType，而且可以让choices作为choiceQuestionCreator函数的必选参数（之前的版本是一个可选参数）。
 <br/>
-<hr/>
+
 ## 总结
 <br/>
 重构以后的版本的view对象可以很清晰地进行新的扩展了，为不同的问题类型扩展新的对象，然后声明questions集合的时候再里面指定类型就行了，view对象本身不再修改任何改变，从而达到了开闭原则的要求。
